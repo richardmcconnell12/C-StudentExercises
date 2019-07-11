@@ -11,6 +11,8 @@ namespace StudentExercise
 
         public string SlackHandle { get; set; }
 
+        public List<Exercise> ExerciseList { get; set; } = new List<Exercise>();
+
         private string _cohort;
 
         public Student(string firstname, string lastname, string slackhandle, string cohort)
@@ -18,7 +20,7 @@ namespace StudentExercise
             FirstName = firstname;
             LastName = lastname;
             SlackHandle = slackhandle;
-            ExerciseList = new List<Exercise>();
+            _cohort = cohort;
         }
 
         public void ViewAssignedExercises()
@@ -26,8 +28,9 @@ namespace StudentExercise
             Console.WriteLine($"{FirstName} {LastName} list of exercises include: ");
             foreach (Exercise exercise in ExerciseList)
             {
-                Console.WriteLine($"{exercise.Name}: written in {exercise.Language}")
-            }
+                Console.WriteLine($"{exercise.Name}: written in {exercise.Language}");
+                Console.WriteLine("");
+            };
         }
     }
 }
