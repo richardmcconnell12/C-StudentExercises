@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace StudentExercise
 {
@@ -21,6 +22,7 @@ namespace StudentExercise
             var Ricky = new Student("Ricky", "McConnell", "@Rickydogsickdog", "Day Cohort 32");
             var Julian = new Student("Julian", "Swayze", "@Juls", "Night Cohort 10");
             var Corey = new Student("Corey", "Trevor", "@CoreyTrevor", "Day Cohort 32");
+            var Randy = new Student("Randy", "Lahey", "@Randers", "Night Cohort 10");
 
             var Steve = new Instructor("Steve", "Brownlee", "@SteveCoach", "Dad Jokes", "Day Cohort 32");
             var Adam = new Instructor("Adam", "Schaeffer", "@AdamShaef", "Snacks", "Day Cohort 13");
@@ -74,6 +76,29 @@ namespace StudentExercise
             AllExercises.Add(Journal);
             AllExercises.Add(DiamondCutter);
             AllExercises.Add(GetYourGlasses);
+
+            var AllInstructors = new List<Instructor>();
+            AllInstructors.Add(Steve);
+            AllInstructors.Add(Adam);
+            AllInstructors.Add(Andy);
+
+            var AllCohorts = new List<Cohort>();
+            AllCohorts.Add(Day32);
+            AllCohorts.Add(Day13);
+            AllCohorts.Add(Night10);
+
+            // List exercises for the JavaScript language by using the Where() LINQ method.
+            List<Exercise> JSExercises = (from exercise in AllExercises
+                                          where exercise.Language == "JavaScript"
+                                          select exercise).ToList();
+
+            foreach (Exercise exer in JSExercises)
+            {
+                Console.WriteLine($"List of JS exercises: {exer.Name}");
+            }
+
+
+
         }
     }
 }
