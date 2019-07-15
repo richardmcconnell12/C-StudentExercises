@@ -13,7 +13,7 @@ namespace StudentExercise
 
         public List<Exercise> ExerciseList { get; set; } = new List<Exercise>();
 
-        private string _cohort;
+        public string _cohort;
 
         public Student(string firstname, string lastname, string slackhandle, string cohort)
         {

@@ -13,7 +13,7 @@ namespace StudentExercise
 
         public string Specialty { get; set; }
 
-        private string _cohort;
+        public string _cohort;
 
         public Instructor(string firstname, string lastname, string slackhandle, string specialty, string cohort)
         {
