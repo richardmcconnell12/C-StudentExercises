@@ -4,6 +4,12 @@ using System.Linq;
 
 namespace StudentExercise
 {
+    class CohortReport
+    {
+        public string Cohort { get; set; }
+
+        public int CohortCount { get; set; }
+    }
     class Program
     {
         static void Main(string[] args)
@@ -63,6 +69,7 @@ namespace StudentExercise
             foreach (Student student in Day13.StudentList)
             {
                 Console.WriteLine($"Day Cohort 13: {student.FirstName}");
+                Console.WriteLine("");
             }
 
             var AllStudents = new List<Student>();
@@ -70,6 +77,7 @@ namespace StudentExercise
             AllStudents.Add(Ricky);
             AllStudents.Add(Julian);
             AllStudents.Add(Corey);
+            AllStudents.Add(Randy);
 
             var AllExercises = new List<Exercise>();
             AllExercises.Add(FizzBuzz);
@@ -97,8 +105,58 @@ namespace StudentExercise
                 Console.WriteLine($"List of JS exercises: {exer.Name}");
             }
 
+            // List students in a particular cohort by using the Where() LINQ method.
+            List<Student> StudentsInCohort = (from student in AllStudents
+                                              where student._cohort == "Day Cohort 32"
+                                              select student).ToList();
 
+            foreach (Student stu in StudentsInCohort)
+            {
+                Console.WriteLine($"Students in Day Cohort 32: {stu.FirstName} {stu.LastName}");
+            }
 
+            // List instructors in a particular cohort by using the Where() LINQ method.
+            List<Instructor> InstructorInCohort = (from instructor in AllInstructors
+                                                   where instructor._cohort == "Night Cohort 10"
+                                                   select instructor).ToList();
+
+            foreach (Instructor inst in InstructorInCohort)
+            {
+                Console.WriteLine($"Instructor of the Cohort: {inst.FirstName} {inst.LastName}");
+            }
+
+            // Sort the students by their last name.
+            List<Student> OrderStudent = AllStudents.OrderBy(s => s.LastName).ToList();
+
+            foreach (Student stu in OrderStudent)
+            {
+                Console.WriteLine($"All student ordered by last name: {stu.LastName} {stu.FirstName}");
+            }
+
+            // Display any students that aren't working on any exercises.
+            var NoExercises = (from student in AllStudents
+                               where student.ExerciseList.Count == 0
+                               select student);
+
+            foreach (Student stu in NoExercises)
+            {
+                Console.WriteLine($"Students with no exercises: {stu.FirstName} {stu.LastName}");
+            }
+
+            // Which student is working on the most exercises
+            var MostExercises = AllStudents.OrderByDescending(student =>
+            student.ExerciseList.Count()).Take(2);
+
+            foreach (Student s in MostExercises)
+            {
+                Console.WriteLine($"Student with most exercises: {s.FirstName} {s.LastName}");
+            }
+
+            // How many students in each cohort?
+            foreach (var cohort in AllCohorts)
+            {
+                Console.WriteLine($"{cohort.CohortName}: {cohort.StudentList.Count()} students.");
+            }
         }
     }
 }
