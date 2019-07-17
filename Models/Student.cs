@@ -3,17 +3,10 @@ using System.Collections.Generic;
 
 namespace StudentExercise
 {
-    class Student
+    class Student : NSSPerson
     {
-        public string FirstName { get; set; }
-
-        public string LastName { get; set; }
-
-        public string SlackHandle { get; set; }
-
         public List<Exercise> ExerciseList { get; set; } = new List<Exercise>();
 
-        public string _cohort;
 
         public Student(string firstname, string lastname, string slackhandle, string cohort)
         {
